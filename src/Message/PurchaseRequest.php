@@ -36,10 +36,9 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
+
     public function getData()
     {
-//        $this->setMerchant($this->getParameter('merchantId'));
-//        $this->setSecretKey($this->getParameter('secretKey'));
         $data = array();
         $data['MERCHANT'] = $this->getMerchantId();
         $data['ORDER_REF'] = rand(1000, 9999);
@@ -54,7 +53,7 @@ class PurchaseRequest extends AbstractRequest
             $data['EXP_YEAR'] = $card->getExpiryYear();
             $data['CC_CVV'] = $card->getCvv();
             $data['CC_OWNER'] = $card->getName();
-            $data['BACK_REF'] = 'kullanatpazari.biberltd.com/app_dev.php/tr/';
+            $data['BACK_REF'] = '';
             $data['CLIENT_IP'] = $this->getClientIp();
             $data['BILL_LNAME'] = $card->getBillingLastName();
             $data['BILL_FNAME'] = $card->getBillingFirstName();
@@ -68,16 +67,16 @@ class PurchaseRequest extends AbstractRequest
             $data['DELIVERY_ZIPCODE'] = $card->getShippingPostcode();
             $data['DELIVERY_CITY'] = $card->getShippingCity();
             $data['DELIVERY_STATE'] = $card->getShippingState();
-            $data['DELIVERY_COUNTRYCODE'] = 'TR';
+            $data['DELIVERY_COUNTRYCODE'] = $card->getShippingCountry();
         }
         $items = $this->getItems();
         if (!empty($items)) {
             foreach ($items as $key => $item) {
-                $data['ORDER_PNAME['.$key.']'] = $item->getName();
-                $data['ORDER_PCODE['.$key.']'] = $item->getName();
-                $data['ORDER_PINFO['.$key.']'] = $item->getDescription();
-                $data['ORDER_PRICE['.$key.']'] = $item->getPrice();
-                $data['ORDER_QTY['.$key.']'] = $item->getQuantity();
+                $data['ORDER_PNAME[' . $key . ']'] = $item->getName();
+                $data['ORDER_PCODE[' . $key . ']'] = $item->getName();
+                $data['ORDER_PINFO[' . $key . ']'] = $item->getDescription();
+                $data['ORDER_PRICE[' . $key . ']'] = $item->getPrice();
+                $data['ORDER_QTY[' . $key . ']'] = $item->getQuantity();
             }
 
         }
@@ -89,16 +88,17 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->response = new PurchaseResponse($this, $data, $this->getEndpoint());
     }
-    private function generateHash($data){
+
+    private function generateHash($data)
+    {
         if ($this->getSecretKey()) {
             //begin HASH calculation
             ksort($data);
-//            echo '<pre>';var_dump($data);die;
             $hashString = "";
             foreach ($data as $key => $val) {
                 $hashString .= strlen($val) . $val;
             }
-            return  hash_hmac("md5", $hashString, $this->getSecretKey());
+            return hash_hmac("md5", $hashString, $this->getSecretKey());
         }
 
     }

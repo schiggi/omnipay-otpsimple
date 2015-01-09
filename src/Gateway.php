@@ -34,7 +34,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-//            'MERCHANT' => '',
+            'MERCHANT' => '',
         );
     }
 
