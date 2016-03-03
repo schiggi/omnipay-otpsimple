@@ -1,10 +1,9 @@
 # Omnipay: OTP Mobile / Simple
 
-**OTP Mobile / Simple driver for the Omnipay payment processing library**
+**OTP Simple (Hungary) driver for the Omnipay payment processing library**
 
-[![Build Status](https://travis-ci.org/thephpleague/omnipay-payu.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-payu)
-[![Latest Stable Version](https://poser.pugx.org/omnipay/payu/version.png)](https://packagist.org/packages/omnipay/payu)
-[![Total Downloads](https://poser.pugx.org/omnipay/payu/d/total.png)](https://packagist.org/packages/omnipay/payu)
+[![Build Status](https://travis-ci.org/thephpleague/omnipay-payu.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-otpsimple)
+[![Total Downloads](https://poser.pugx.org/omnipay/payu/d/total.png)](https://packagist.org/packages/schiggi/omnipay-otpsimple)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements PayU support for Omnipay.
