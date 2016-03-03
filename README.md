@@ -1,6 +1,6 @@
-# Omnipay: PayU
+# Omnipay: OTP Mobile / Simple
 
-**PayU driver for the Omnipay payment processing library**
+**OTP Mobile / Simple driver for the Omnipay payment processing library**
 
 [![Build Status](https://travis-ci.org/thephpleague/omnipay-payu.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-payu)
 [![Latest Stable Version](https://poser.pugx.org/omnipay/payu/version.png)](https://packagist.org/packages/omnipay/payu)
@@ -17,7 +17,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/payu": "~2.0"
+        "omnipay/otpmobilesimple": "~2.0"
     }
 }
 ```
