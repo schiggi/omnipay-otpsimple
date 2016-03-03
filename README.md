@@ -17,7 +17,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/otpmobilesimple": "~2.0"
+        "schiggi/otpsimple": "~2.0"
     }
 }
 ```
