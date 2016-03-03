@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/payu",
+    "name": "omnipay/otpsimple",
     "type": "library",
     "description": "PayU driver for the Omnipay payment processing library",
     "keywords": [
@@ -8,23 +8,25 @@
         "omnipay",
         "pay",
         "payment",
-        "payu",
+        "OTP Simple",
+        "OTP Mobile",
+        "Magyar",
         "purchase"
     ],
-    "homepage": "https://github.com/efesaid/omnipay-payu",
+    "homepage": "https://github.com/schiggi/omnipay-otpsimple",
     "license": "MIT",
     "authors": [
         {
-            "name": "Said İmamoğlu",
-            "email": "said.imamoglu@biberltd.com"
+            "name": "Alex Schikalow",
+            "homepage": "http://www.schikalow.de",
         },
         {
             "name": "Omnipay Contributors",
-            "homepage": "https://github.com/efesaid/omnipay-payu/contributors"
+            "homepage": "https://github.com/schiggi/omnipay-otpsimple/contributors"
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\PayU\\" : "src/" }
+        "psr-4": { "Omnipay\\otpsimple\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
