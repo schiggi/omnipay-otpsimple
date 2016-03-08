@@ -1,7 +1,7 @@
 {
-    "name": "omnipay-otpsimple",
+    "name": "schiggi/omnipay-otpsimple",
     "type": "library",
-    "description": "PayU driver for the Omnipay payment processing library",
+    "description": "OTP Simple driver for the Omnipay payment processing library",
     "keywords": [
         "gateway",
         "merchant",
@@ -26,7 +26,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay-otpsimple\\" : "src/" }
+        "psr-4": { "Omnipay\\otpsimple\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
