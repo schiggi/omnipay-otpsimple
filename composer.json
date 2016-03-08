@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/otpsimple",
+    "name": "omnipay-otpsimple",
     "type": "library",
     "description": "PayU driver for the Omnipay payment processing library",
     "keywords": [
@@ -26,7 +26,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\otpsimple\\" : "src/" }
+        "psr-4": { "Omnipay-otpsimple\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
