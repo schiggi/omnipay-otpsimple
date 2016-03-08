@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\PayU\Message;
+namespace Omnipay\OTPSimple\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Payu\Message;
+namespace Omnipay\OTPSimple\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;

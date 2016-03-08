@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\PayU;
+namespace Omnipay\OTPSimple;
 
 use Omnipay\Common\AbstractGateway;
 
@@ -8,7 +8,7 @@ class Gateway extends AbstractGateway
 {
     public function getName()
     {
-        return 'PayU';
+        return 'OTPSimple';
     }
 
     public function getMerchantId()
@@ -40,10 +40,10 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $parameters
-     * @return \Omnipay\PayU\Message\PurchaseRequest
+     * @return \Omnipay\OTPSimple\Message\PurchaseRequest
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayU\Message\PurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\OTPSimple\Message\PurchaseRequest', $parameters);
     }
 }
