@@ -9,8 +9,8 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class PurchaseRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'https://secure.payu.com.tr/order/alu/v2';
-    protected $testEndpoint = 'https://secure.payu.com.tr/order/alu/v2';
+    protected $liveEndpoint = 'https://secure.simplepay.hu/payment/order/lu.php';
+    protected $testEndpoint = 'https://sandbox.simplepay.hu/payment/order/lu.php';
 
     public function getMerchantId()
     {
@@ -41,18 +41,12 @@ class PurchaseRequest extends AbstractRequest
     {
         $data = array();
         $data['MERCHANT'] = $this->getMerchantId();
-        $data['ORDER_REF'] = rand(1000, 9999);
+        $data['ORDER_REF'] = $this->getTransactionId();
         $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
         $data['PRICES_CURRENCY'] = $this->getCurrency();
         $data['PAY_METHOD'] = 'CCVISAMC';
         $card = $this->getCard();
         if ($card) {
-            $data['SELECTED_INSTALLMENTS_NUMBER'] = 1;
-            $data['CC_NUMBER'] = $card->getNumber();
-            $data['EXP_MONTH'] = $card->getExpiryMonth();
-            $data['EXP_YEAR'] = $card->getExpiryYear();
-            $data['CC_CVV'] = $card->getCvv();
-            $data['CC_OWNER'] = $card->getName();
             $data['BACK_REF'] = '';
             $data['CLIENT_IP'] = $this->getClientIp();
             $data['BILL_LNAME'] = $card->getBillingLastName();
