@@ -40,14 +40,22 @@ class PurchaseRequest extends AbstractRequest
     public function getData()
     {
         $data = array();
+        $hashData = array();
+
         $data['MERCHANT'] = $this->getMerchantId();
         $data['ORDER_REF'] = $this->getTransactionId();
-        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
+        $data['ORDER_DATE'] = '2014-06-06 09:04:42';
+//        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
+        $data['ORDER_TIMEOUT'] = 300;
         $data['PRICES_CURRENCY'] = $this->getCurrency();
         $data['PAY_METHOD'] = 'CCVISAMC';
+        $data['LANGUAGE'] = 'HU';
+        $data['AUTOMODE'] = 1;
         $card = $this->getCard();
         if ($card) {
-            $data['BACK_REF'] = '';
+//            $data['BACK_REF'] = 'localhost:80';
+            $data['BACK_REF'] = 'https://butoraim.hu';
+            $data['TIMEOUT_URL'] = 'https://butoraim.hu/index.php?route=payment/payu/callbackTimeOut&amp;order=1825&amp;currency=HUF';
             $data['CLIENT_IP'] = $this->getClientIp();
             $data['BILL_LNAME'] = $card->getBillingLastName();
             $data['BILL_FNAME'] = $card->getBillingFirstName();
@@ -63,18 +71,53 @@ class PurchaseRequest extends AbstractRequest
             $data['DELIVERY_STATE'] = $card->getShippingState();
             $data['DELIVERY_COUNTRYCODE'] = $card->getShippingCountry();
         }
+
+
+
+        $hashData[] = $data['MERCHANT'];
+        $hashData[] = $data['ORDER_REF'];
+        $hashData[] = $data['ORDER_DATE'];
+
         $items = $this->getItems();
+        $testcode[] = 'sku0001';
+        $testcode[] = 'sku0002';
+
         if (!empty($items)) {
             foreach ($items as $key => $item) {
-                $data['ORDER_PNAME[' . $key . ']'] = $item->getName();
-                $data['ORDER_PCODE[' . $key . ']'] = $item->getName();
-                $data['ORDER_PINFO[' . $key . ']'] = $item->getDescription();
-                $data['ORDER_PRICE[' . $key . ']'] = $item->getPrice();
-                $data['ORDER_QTY[' . $key . ']'] = $item->getQuantity();
+                $data['ORDER_PNAME[]'] = $item->getName();
+                $hashData[] = $data['ORDER_PNAME[]'];
             }
-
+            foreach ($items as $key => $item) {
+                $data['ORDER_PCODE[]'] = $testcode[$key];
+                $hashData[] = $data['ORDER_PCODE[]'];
+            }
+            foreach ($items as $key => $item) {
+                $data['ORDER_PINFO[]'] = $item->getDescription();
+                $hashData[] = $data['ORDER_PINFO[]'];
+            }
+            foreach ($items as $key => $item) {
+                $data['ORDER_PRICE[]'] = $item->getPrice();
+                $hashData[] = $data['ORDER_PRICE[]'];
+            }
+            foreach ($items as $key => $item) {
+                $data['ORDER_QTY[]'] = $item->getQuantity();
+                $hashData[] = $data['ORDER_QTY[]'];
+            }
+            foreach ($items as $key => $item) {
+                $data['ORDER_VAT[]'] = 0;
+                $hashData[] = $data['ORDER_VAT[]'];
+            }
         }
-        $data["ORDER_HASH"] = $this->generateHash($data);
+
+        $data['ORDER_SHIPPING'] = 0;
+        $data['DISCOUNT'] = 0;
+
+        $hashData[] = $data['ORDER_SHIPPING'];
+        $hashData[] = $data['PRICES_CURRENCY'];
+        $hashData[] = $data['DISCOUNT'];
+        $hashData[] = $data['PAY_METHOD'];
+        $data["ORDER_HASH"] = $this->generateHash($hashData);
+
         return $data;
     }
 
@@ -87,7 +130,6 @@ class PurchaseRequest extends AbstractRequest
     {
         if ($this->getSecretKey()) {
             //begin HASH calculation
-            ksort($data);
             $hashString = "";
             foreach ($data as $key => $val) {
                 $hashString .= strlen($val) . $val;
