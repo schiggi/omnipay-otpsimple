@@ -37,6 +37,16 @@ class PurchaseRequest extends AbstractRequest
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
 
+    public function setTimeoutUrl($value)
+    {
+        return $this->setParameter('timeoutUrl', $value);
+    }
+
+    public function getTimeoutUrl()
+    {
+        return $this->getParameter('timeoutUrl');
+    }
+
     public function getData()
     {
         $data = array();
@@ -53,10 +63,8 @@ class PurchaseRequest extends AbstractRequest
         $data['AUTOMODE'] = 1;
         $card = $this->getCard();
         if ($card) {
-//            $data['BACK_REF'] = 'localhost:80';
-            $data['BACK_REF'] = 'https://butoraim.hu';
-            $data['TIMEOUT_URL'] = 'https://butoraim.hu/index.php?route=payment/payu/callbackTimeOut&amp;order=1825&amp;currency=HUF';
-            $data['CLIENT_IP'] = $this->getClientIp();
+            $data['BACK_REF'] = $this->getReturnUrl();
+            $data['TIMEOUT_URL'] = $this->getTimeoutUrl();
             $data['BILL_LNAME'] = $card->getBillingLastName();
             $data['BILL_FNAME'] = $card->getBillingFirstName();
             $data['BILL_EMAIL'] = $card->getEmail();
@@ -79,16 +87,13 @@ class PurchaseRequest extends AbstractRequest
         $hashData[] = $data['ORDER_DATE'];
 
         $items = $this->getItems();
-        $testcode[] = 'sku0001';
-        $testcode[] = 'sku0002';
-
         if (!empty($items)) {
             foreach ($items as $key => $item) {
                 $data['ORDER_PNAME[]'] = $item->getName();
                 $hashData[] = $data['ORDER_PNAME[]'];
             }
             foreach ($items as $key => $item) {
-                $data['ORDER_PCODE[]'] = $testcode[$key];
+                $data['ORDER_PCODE[]'] = 'n/a';
                 $hashData[] = $data['ORDER_PCODE[]'];
             }
             foreach ($items as $key => $item) {
@@ -96,7 +101,7 @@ class PurchaseRequest extends AbstractRequest
                 $hashData[] = $data['ORDER_PINFO[]'];
             }
             foreach ($items as $key => $item) {
-                $data['ORDER_PRICE[]'] = $item->getPrice();
+                $data['ORDER_PRICE[]'] = $this->getAmount();
                 $hashData[] = $data['ORDER_PRICE[]'];
             }
             foreach ($items as $key => $item) {
