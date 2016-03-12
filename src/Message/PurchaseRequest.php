@@ -54,8 +54,7 @@ class PurchaseRequest extends AbstractRequest
 
         $data['MERCHANT'] = $this->getMerchantId();
         $data['ORDER_REF'] = $this->getTransactionId();
-        $data['ORDER_DATE'] = '2014-06-06 09:04:42';
-//        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
+        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
         $data['ORDER_TIMEOUT'] = 300;
         $data['PRICES_CURRENCY'] = $this->getCurrency();
         $data['PAY_METHOD'] = 'CCVISAMC';
@@ -112,6 +111,19 @@ class PurchaseRequest extends AbstractRequest
                 $data['ORDER_VAT[]'] = 0;
                 $hashData[] = $data['ORDER_VAT[]'];
             }
+        } else {
+            $data['ORDER_PNAME[]'] = $this->getDescription();
+            $hashData[] = $data['ORDER_PNAME[]'];
+            $data['ORDER_PCODE[]'] = 'n/a';
+            $hashData[] = $data['ORDER_PCODE[]'];
+//            $data['ORDER_PINFO[]'] = '';
+//            $hashData[] = $data['ORDER_PINFO[]'];
+            $data['ORDER_PRICE[]'] = $this->getAmount();
+            $hashData[] = $data['ORDER_PRICE[]'];
+            $data['ORDER_QTY[]'] = 1;
+            $hashData[] = $data['ORDER_QTY[]'];
+            $data['ORDER_VAT[]'] = 0;
+            $hashData[] = $data['ORDER_VAT[]'];
         }
 
         $data['ORDER_SHIPPING'] = 0;

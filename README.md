@@ -6,7 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/omnipay/payu/d/total.png)](https://packagist.org/packages/omnipay/otpsimple)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements PayU support for Omnipay.
+processing library for PHP 5.3+. This package implements [OTP Mobile Simple](https://www.otpsimple.hu/direkt) support for Omnipay.
 
 ## Installation
 

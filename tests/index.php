@@ -16,11 +16,7 @@ $gateway = Omnipay::create('OTPSimple');
 $gateway->setTestMode(true);
 $gateway->setMerchantId('P137702');
 $gateway->setSecretKey('U0!K6[(L9X^S[[J7@I2f');
-//$gateway->setMerchantId('P065901');
-//$gateway->setSecretKey('4[uu1K1!=c@?a6LX6=c7');
 
-
-//$gateway->setNotifyUrl('http://www.example.com/notify');
 //$settings = $gateway->getDefaultParameters();
 //echo '<pre>',print_r($settings,1),'</pre>';
 
@@ -45,8 +41,10 @@ $orderData = [
     'email' => 'payu.tester@example.com'
 ];
 
+$transactionID = 1234;
 $params = array(
-    'transactionId' => '1234',
+    'description'   => 'Butoraim Order' . ' ' . $transactionID,
+    'transactionId' => $transactionID,
     'amount'        => 123.00,
     'currency'      => 'HUF',
     'card'          => $orderData,
@@ -57,15 +55,15 @@ $params = array(
 
 $request = $gateway->purchase($params);
 // Create a basket of items.
-$basket = new \Omnipay\Common\ItemBag();
-$basket->add(array(
-    'name' => 'Butoraim Order' . ' ' . $params['transactionId'],
-    'description' => 'More Information',
-    'quantity' => 1,
-    'price' => '5500'
-));
+//$basket = new \Omnipay\Common\ItemBag();
+//$basket->add(array(
+//    'name' => 'Butoraim Order' . ' ' . $params['transactionId'],
+//    'description' => 'More Information',
+//    'quantity' => 1,
+//    'price' => '5500'
+//));
 
-$request->setItems($basket);
+//$request->setItems($basket);
 
 
 echo '<pre>',print_r($request->getData(),1),'</pre>';

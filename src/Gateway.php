@@ -42,8 +42,6 @@ class Gateway extends AbstractGateway
             'LOG_PATH' => 'log',                                                //path of log file
             'returnUrl' => 'http://' . $_SERVER['HTTP_HOST'] . '/backref.php',        //url of payu payment backref page
             'timeoutUrl' => 'http://' . $_SERVER['HTTP_HOST'] . '/timeout.php', //url of payu payment timeout page
-            'IRN_BACK_URL' => 'http://' . $_SERVER['HTTP_HOST'] . '/irn.php',        //url of payu payment irn page
-            'IDN_BACK_URL' => 'http://' . $_SERVER['HTTP_HOST'] . '/idn.php',        //url of payu payment idn page
             'ORDER_TIMEOUT' => 300,
             'LANGUAGE' => 'HU',
             'GET_DATA' => $_GET,
