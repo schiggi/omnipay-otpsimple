@@ -6,7 +6,7 @@
  * Time: 19:17
  */
 header("Content-Type: text/html; charset=utf-8");
-require 'C:\Users\alex\xampp\htdocs\omnipay-otpsimple\vendor\autoload.php';
+require '..\vendor\autoload.php';
 
 use Omnipay\Omnipay;
 use Omnipay\OTPSimple;
