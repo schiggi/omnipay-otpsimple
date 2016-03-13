@@ -116,8 +116,6 @@ class PurchaseRequest extends AbstractRequest
             $hashData[] = $data['ORDER_PNAME[]'];
             $data['ORDER_PCODE[]'] = 'n/a';
             $hashData[] = $data['ORDER_PCODE[]'];
-//            $data['ORDER_PINFO[]'] = '';
-//            $hashData[] = $data['ORDER_PINFO[]'];
             $data['ORDER_PRICE[]'] = $this->getAmount();
             $hashData[] = $data['ORDER_PRICE[]'];
             $data['ORDER_QTY[]'] = 1;

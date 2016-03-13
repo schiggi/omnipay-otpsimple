@@ -69,12 +69,12 @@ $request = $gateway->purchase($params);
 echo '<pre>',print_r($request->getData(),1),'</pre>';
 
 // Send purchase request
-$response = $request->send();
+//$response = $request->send();
 //
 //if ($response->isSuccessful()) {
 //    // payment is complete
 //} elseif ($response->isRedirect()) {
-    $response->redirect(); // this will automatically forward the customer
+//    $response->redirect(); // this will automatically forward the customer
 //} else {
 //    // not successful
 //}
