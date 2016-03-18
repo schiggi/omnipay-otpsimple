@@ -45,7 +45,7 @@ $transactionID = 1234;
 $params = array(
     'description'   => 'Butoraim Order' . ' ' . $transactionID,
     'transactionId' => $transactionID,
-    'amount'        => 123.00,
+    'amount'        => 1230.00,
     'currency'      => 'HUF',
     'card'          => $orderData,
     'returnUrl' => 'https://butoraim.hu/index.php?route=payment/payu/callbackOK',
@@ -54,6 +54,8 @@ $params = array(
 
 
 $request = $gateway->purchase($params);
+
+
 // Create a basket of items.
 //$basket = new \Omnipay\Common\ItemBag();
 //$basket->add(array(
@@ -80,4 +82,5 @@ echo '<pre>',print_r($request->getData(),1),'</pre>';
 //}
 
 //echo '<pre>',print_r($response->getMessage(),1),'</pre>';
+
 ?>
