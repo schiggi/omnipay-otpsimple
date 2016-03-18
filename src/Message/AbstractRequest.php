@@ -1,7 +1,7 @@
 <?php
 namespace Omnipay\OTPSimple\Message;
 
-use Omnipay\Common\Message\RequestInterface;
+//use Omnipay\Common\Message\RequestInterface;
 
 /**
  *
@@ -13,10 +13,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $testEndpoint = 'https://sandbox.simplepay.hu/payment/order/lu.php';
     protected $endpoint = '';
 
-    public function sendData($data)
-    {
-        return $this->response = new Response($this, $data, $this->getEndpoint());
-    }
+//    public function sendData($data)
+//    {
+//        return $this->response = new Response($this, $data, $this->getEndpoint());
+//    }
 
     public function getMerchantId()
     {

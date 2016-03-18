@@ -5,38 +5,10 @@ namespace Omnipay\OTPSimple\Message;
 //use Omnipay\Common\Message\AbstractRequest;
 
 /**
- * PayU Purchase Request
+ * OTP Simple Purchase Request
  */
 class PurchaseRequest extends AbstractRequest
 {
-//    protected $liveEndpoint = 'https://secure.simplepay.hu/payment/order/lu.php';
-//    protected $testEndpoint = 'https://sandbox.simplepay.hu/payment/order/lu.php';
-
-//    public function getMerchantId()
-//    {
-//        return $this->getParameter('merchantId');
-//    }
-//
-//    public function setMerchantId($value)
-//    {
-//        return $this->setParameter('merchantId', $value);
-//    }
-//
-//    public function getSecretKey()
-//    {
-//        return $this->getParameter('secretKey');
-//    }
-//
-//    public function setSecretKey($value)
-//    {
-//        return $this->setParameter('secretKey', $value);
-//    }
-
-//    public function getEndpoint()
-//    {
-//        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
-//    }
-
     public function setTimeoutUrl($value)
     {
         return $this->setParameter('timeoutUrl', $value);
@@ -141,18 +113,5 @@ class PurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         return $this->response = new PurchaseResponse($this, $data, $this->getEndpoint() );
-    }
-
-    private function generateHash($data)
-    {
-        if ($this->getSecretKey()) {
-            //begin HASH calculation
-            $hashString = "";
-            foreach ($data as $key => $val) {
-                $hashString .= strlen($val) . $val;
-            }
-            return hash_hmac("md5", $hashString, $this->getSecretKey());
-        }
-
     }
 }
