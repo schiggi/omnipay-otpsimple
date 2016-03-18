@@ -26,8 +26,7 @@ class PurchaseRequest extends AbstractRequest
 
         $data['MERCHANT'] = $this->getMerchantId();
         $data['ORDER_REF'] = $this->getTransactionId();
-//        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
-        $data['ORDER_DATE'] = gmdate('2015-11-23 12:11:15');
+        $data['ORDER_DATE'] = gmdate('Y-m-d H:i:s');
         $data['ORDER_TIMEOUT'] = 300;
         $data['PRICES_CURRENCY'] = $this->getCurrency();
         $data['PAY_METHOD'] = 'CCVISAMC';

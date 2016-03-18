@@ -37,11 +37,8 @@ class Gateway extends AbstractGateway
             'merchantId' => "", //merchant account ID (HUF)
             'secretKey' => "", //secret key for account ID (HUF)
             'METHOD' => "CCVISAMC",                                             //payment method     empty -> select payment method on PayU payment page OR [ CCVISAMC, WIRE ]
-            'ORDER_DATE' => @date("Y-m-d H:i:s"),                                //date of transaction
-            'LOGGER' => true,                                                   //transaction log
-            'LOG_PATH' => 'log',                                                //path of log file
-            'returnUrl' => 'http://' . $_SERVER['HTTP_HOST'] . '/backref.php',        //url of payu payment backref page
-            'timeoutUrl' => 'http://' . $_SERVER['HTTP_HOST'] . '/timeout.php', //url of payu payment timeout page
+            'returnUrl' => '',        //url of payu payment backref page
+            'timeoutUrl' => '', //url of payu payment timeout page
             'ORDER_TIMEOUT' => 300,
             'LANGUAGE' => 'HU',
             'GET_DATA' => $_GET,
