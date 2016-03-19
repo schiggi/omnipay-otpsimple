@@ -2,7 +2,6 @@
 
 namespace Omnipay\OTPSimple\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
