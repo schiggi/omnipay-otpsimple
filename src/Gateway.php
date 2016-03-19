@@ -56,4 +56,9 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\OTPSimple\Message\PurchaseRequest', $parameters);
     }
+
+    public function IPNResponse(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\OTPSimple\Message\completePurchaseRequest', $parameters);
+    }
 }
