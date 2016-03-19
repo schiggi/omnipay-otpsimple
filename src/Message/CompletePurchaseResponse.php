@@ -11,17 +11,17 @@ class CompletePurchaseResponse extends AbstractResponse
 {
     public function isSuccessful()
     {
-        return isset($this->data['decision']) && 'ACCEPT' === $this->data['decision'];
+        return isset($this->data['decision']) && 'PAYMENT_AUTHORIZED' === $this->data['ORDERSTATUS'];
     }
 
     public function getTransactionId()
     {
-        return isset($this->data['req_reference_number']) ? $this->data['req_reference_number'] : null;
+        return isset($this->data['REFNOEXT']) ? $this->data['REFNOEXT'] : null;
     }
 
     public function getTransactionReference()
     {
-        return isset($this->data['transaction_id']) ? $this->data['transaction_id'] : null;
+        return isset($this->data['REFNO']) ? $this->data['REFNO'] : null;
     }
 
     public function getMessage()

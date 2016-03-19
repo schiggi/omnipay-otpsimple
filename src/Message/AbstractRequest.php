@@ -57,20 +57,47 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @return string
      */
-    public function generateSignature($data, $secret_key, $skip_field = false)
+    public function generateSignature($data, $secret_key, $skip_field = array())
     {
         //remove named key, if needed
-        if (!empty($skip_field) && array_key_exists($skip_field,$data)) {
-            unset( $data[$skip_field] );
-        }
+//        if (!empty($skip_field) && array_key_exists($skip_field,$data)) {
+//            unset( $data[$skip_field] );
+//        }
+        $data_flat = $this->flatArray($data,$skip_field);
 
         //begin HASH calculation
         $hashString = "";
-        foreach ($data as $key => $val) {
+        foreach ($data_flat as $key => $val) {
             $hashString .= strlen($val) . $val;
         }
         return hash_hmac("md5", $hashString, $secret_key);
 
+    }
+
+    /**
+     * Creates a 1-dimension array from a 2-dimension one
+     *
+     * @param array $array Array to be processed
+     * @param array $skip  Array of keys to be skipped when creating the new array
+     *
+     * @return array $return Flat array
+     *
+     */
+    public function flatArray($array, $skip = array())
+    {
+        $return = array();
+        foreach ($array as $name => $item) {
+            if (!in_array($name, $skip)) {
+                if (is_array($item)) {
+                    foreach ($item as $subItem) {
+                        $return[] = $subItem;
+                    }
+                } elseif (!is_array($item)) {
+                    $return[] = $item;
+                }
+            }
+        }
+        return $return;
     }
 
     public function supportsDeleteCard()

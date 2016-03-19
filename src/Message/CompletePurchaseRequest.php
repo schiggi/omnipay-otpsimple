@@ -20,7 +20,7 @@ class CompletePurchaseRequest extends AbstractRequest
         if ($this->generateSignature(
                 $data,
                 $this->getSecretKey(),
-                'HASH'
+                array("HASH")
             )
             != $data['HASH']) {
             throw new InvalidRequestException('signature mismatch');
